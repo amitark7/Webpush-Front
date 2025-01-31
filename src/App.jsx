@@ -252,6 +252,7 @@ function App() {
                 setError(false);
               } catch {
                 setError(true);
+                setMessage("Invalid JSON");
               }
             }}
           ></textarea>
