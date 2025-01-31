@@ -35,13 +35,16 @@ function App() {
     ) {
       setMessage("");
       setLoading(true);
-      const response = await fetch("http://localhost:5001/send-vapid", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(vapidKey),
-      });
+      const response = await fetch(
+        "https://webpush-server-gfel.onrender.com/send-vapid",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(vapidKey),
+        }
+      );
       if (response.status == 200) {
         const jsonData = await response.json();
         setShow({ ...show, vapid: false, subscription: true });
@@ -70,13 +73,16 @@ function App() {
       console.log(subscription);
       setMessage("");
       setLoading(true);
-      const response = await fetch("http://localhost:5001/send-subcribe", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(subscription),
-      });
+      const response = await fetch(
+        "https://webpush-server-gfel.onrender.com/send-subcribe",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(subscription),
+        }
+      );
       if (response.status == 200) {
         setShow({ ...show, subscription: false, notification: true });
         const jsonData = await response.json();
@@ -105,15 +111,18 @@ function App() {
     if (payload && Object.keys(payload).length > 0) {
       setMessage("");
       setLoading(true);
-      const response = await fetch("http://localhost:5001/send-notification", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-          payload: JSON.stringify(JSON.parse(payload)),
-        }),
-      });
+      const response = await fetch(
+        "https://webpush-server-gfel.onrender.com/send-notification",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            payload: JSON.stringify(JSON.parse(payload)),
+          }),
+        }
+      );
       if (response.status === 200) {
         const jsonData = await response.json();
         if (jsonData) {
