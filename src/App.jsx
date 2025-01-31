@@ -108,7 +108,7 @@ function App() {
   };
 
   const sendNotifiation = async () => {
-    if (payload && Object.keys(payload).length > 0) {
+    if (payload && Object.keys(payload).length > 0 && !error) {
       setMessage("");
       setLoading(true);
       const response = await fetch(
@@ -256,7 +256,7 @@ function App() {
             }}
           ></textarea>
 
-          <button onClick={sendNotifiation}>
+          <button disabled={loading || error} onClick={sendNotifiation}>
             {loading ? "Sending" : "Send Notification"}
           </button>
         </div>
