@@ -249,6 +249,7 @@ function App() {
               setPayload(e.target.value);
               try {
                 JSON.parse(e.target.value);
+                setMessage("");
                 setError(false);
               } catch {
                 setError(true);
